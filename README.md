@@ -1,1 +1,2 @@
 # CommunityMappingData
+ A simple Python script to parse .csv input data to respective the SA2 data for Australia, for use within the Community Mapping project for IFB399 Capstone [Phase 2] at the Queensland University of Technology (QUT), Semester 2, 2021.
