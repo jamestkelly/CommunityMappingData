@@ -1,11 +1,12 @@
 # DESCRIPTION
 # Script to update file, 'geo-numeric.json' with the current gap scores from
-# database
+# database.
 
 # Import packages
 import json, glob, os, csv, pprint
 
-#
+# Method to read a .csv file and return the contents as an array of
+# rows.
 def read_csv(latest_csv):
     file = open(latest_csv)
     csv_reader = csv.reader(file)
@@ -18,7 +19,7 @@ def read_csv(latest_csv):
 
     return rows
 
-#
+# Method to parse the 'properties' from the geo.json file.
 def fetch_props(data):
     feature_props = [] # Initialise an empty array
 
@@ -29,16 +30,16 @@ def fetch_props(data):
     # Return the array
     return feature_props
 
-#
+# Method to fetch the gap scores contained in the array of
+# rows as parsed from the .csv file.
 def fetch_gap_score(sa2Id, csv_data):
     for i in range(len(csv_data)):
         if csv_data[i][0] == sa2Id:
             return csv_data[i][1]
         elif i == len(csv_data) - 1:
-            #print(csv_data[5][1])
             return csv_data[5][1]
 
-#
+# Method to edit the properties.
 def edit_props(feature_properties, latest_csv):
     edited_props = [] # Initialise an empty array
     csv_data = read_csv(latest_csv)
@@ -61,7 +62,7 @@ def edit_props(feature_properties, latest_csv):
 
     return edited_props
 
-#
+# Method to convert a property to string.
 def property_to_string(edited_properties):
     integer_keys = ["sa2Id", "sa3Id", "gapScore"]
     printing_keys = ["\"sa2Id\"", "\"sa2Name\"", "\"stateName\"", "\"sa3Id\"", "\"sa3Name\"", "\"gapScore\""]
@@ -86,7 +87,8 @@ def property_to_string(edited_properties):
     output += "\"id\":\"" + test_dict["sa2Id"] + "\"},\n"
     return output
 
-#
+# Method to convert the last row of the properties to conform to
+# .json file requirements.
 def prop_to_string_last(edited_properties):
     printing_keys = ["\"sa2Id\"", "\"sa2Name\"", "\"stateName\"", "\"sa3Id\"", "\"sa3Name\"", "\"gapScore\""]
     test_dict = edited_properties
@@ -104,7 +106,7 @@ def prop_to_string_last(edited_properties):
     output += "\"id\":\"" + test_dict["sa2Id"] + "\"}\n"
     return output
 
-# 
+# Main method to run operations
 def main():
     # Specify path to .csv file location in data directory
     data_dir = glob.glob('../Data/*.csv')

@@ -1,13 +1,13 @@
 # Script to parse raw data taken from source data (Government)
 
-#
+# Import necessary packages
 import json
 
-#
+# Open the source .json file
 with open('../Data/RegionalAreaEntity.json') as file:
     data = json.load(file)
 
-#
+# Method to write collated information to file.
 def write_information_file(data):
     printing_keys = ["\"sa2Id\"", "\"sa3Id\"", "\"sa3Name\"", "\"numOfPph\"", \
                  "\"percentPphPerDay\"", "\"sa2Name\"", "\"indigenous\"", \
@@ -17,7 +17,7 @@ def write_information_file(data):
 
     file = open("../Data/ausInformation.json", "w")
     file.write("{\n")
-    
+
     for i in range(len(data)):
         blob = data[i]
         file.write("\t")
@@ -25,9 +25,9 @@ def write_information_file(data):
         object_key = blob["sa2Id"]
         file.write(str(object_key))
         file.write('": {\n')
-        
+
         counter = 0
-        
+
         for key in printing_keys:
             value = blob[field_keys[counter]]
 
@@ -46,7 +46,7 @@ def write_information_file(data):
     file.write("}")
     file.close()
 
-#
+# Method to write to the seifa file.
 def write_seifa_file(data):
     printing_keys = ["\"sa2Id\"", "\"sa2Name\"", "\"irsd\"", "\"irsad\"", "\"ier\"", "\"ieo\""]
     field_keys = ["sa2Id", "sa2Name", "irsd", "irsad", "ier", "ieo"]
@@ -82,6 +82,6 @@ def write_seifa_file(data):
     file.write("}")
     file.close()
 
-#
+# Collect the information and write it to file
 write_information_file(data)
 write_seifa_file(data)
