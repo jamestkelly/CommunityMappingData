@@ -113,9 +113,7 @@ The contributors to this project are as follows:
 * Samanatha Swift
   * Email: [sj.swift@connect.qut.edu.au](sj.swift@connect.qut.edu.au)
 * Luis Villamizar
-  * Email: [luisfernando.villamizarpinilla@connect.qut.
-edu.au](luisfernando.villamizarpinilla@connect.qut.
-edu.au)
+  * Email: [luisfernando.villamizarpinilla@connect.qut.edu.au](luisfernando.villamizarpinilla@connect.qut.edu.au)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
